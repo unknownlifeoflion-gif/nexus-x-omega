@@ -1,0 +1,4 @@
+Target parser test: 18/09/2026 SK-70 PDF.
+Expected after footer-date removal: 362 4-digit endpoint records across 4th–9th prize tiers.
+Expected tier counts: 4th 19, 5th 6, 6th 25, 7th 76, 8th 91, 9th 145.
+The parser removes page-footer/date strings before extracting 4-digit endpoints so the recurring year 2026 is not treated as a lottery endpoint.
