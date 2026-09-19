@@ -1,89 +1,631 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#07111f"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon-192.png"><script>if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js"));</script>
-<title>NEXUS-X Ω — Android V3</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon-192.png">
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js"));
+}
+</script>
+<title>NEXUS-X Ω — Android V4</title>
 <style>
 :root{--bg:#07111f;--panel:#0d1a2b;--panel2:#101f33;--line:#203650;--text:#eaf4ff;--muted:#91a8bd;--cyan:#49d5ff;--green:#55e39b;--amber:#ffc857;--red:#ff6b7a;--purple:#b99cff}
-*{box-sizing:border-box}html,body{margin:0;background:linear-gradient(180deg,#06101c,#091728 55%,#07111f);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}body{min-height:100vh}.app{max-width:1100px;margin:auto;padding:14px 14px 90px}.top{position:sticky;top:0;z-index:5;background:rgba(7,17,31,.92);backdrop-filter:blur(12px);padding:10px 0 12px;border-bottom:1px solid var(--line)}h1{font-size:21px;margin:0}.sub{font-size:12px;color:var(--muted);margin-top:3px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.card{background:linear-gradient(180deg,var(--panel),#0a1727);border:1px solid var(--line);border-radius:16px;padding:13px;box-shadow:0 8px 30px rgba(0,0,0,.16)}.stat b{font-size:21px}.stat span{display:block;color:var(--muted);font-size:11px;margin-top:3px}.tabs{display:flex;gap:7px;overflow:auto;padding:12px 0}.tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:9px 12px}.tabs button.active{color:#00151e;background:var(--cyan);border-color:var(--cyan);font-weight:700}.section{display:none}.section.active{display:block}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.btn{border:1px solid var(--line);background:#13243a;color:var(--text);padding:11px 14px;border-radius:11px;font-weight:700}.btn.primary{background:var(--cyan);color:#00131c;border-color:var(--cyan)}.btn.good{background:rgba(85,227,155,.12);border-color:rgba(85,227,155,.45);color:var(--green)}.btn.warn{background:rgba(255,200,87,.1);border-color:rgba(255,200,87,.4);color:var(--amber)}.btn.danger{background:rgba(255,107,122,.1);border-color:rgba(255,107,122,.4);color:var(--red)}input,textarea,select{width:100%;background:#081525;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px;font:inherit}textarea{min-height:110px}.drop{border:1.5px dashed #3a5d7b;border-radius:15px;padding:22px;text-align:center;background:rgba(73,213,255,.03)}.drop.drag{border-color:var(--cyan);background:rgba(73,213,255,.08)}.pill{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:999px;background:#102237;color:var(--muted);font-size:11px}.pass{color:var(--green)}.review{color:var(--amber)}.fail{color:var(--red)}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.list{display:grid;gap:7px;margin-top:10px}.item{background:#0a1727;border:1px solid var(--line);border-radius:12px;padding:10px}.num{font-size:20px;font-weight:800;letter-spacing:1px}.rank{font-size:11px;color:var(--muted)}.bar{height:7px;border-radius:9px;background:#172a40;overflow:hidden;margin-top:7px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:9px}.small{font-size:12px;color:var(--muted)}.notice{padding:10px 12px;border-radius:11px;background:rgba(73,213,255,.07);border:1px solid rgba(73,213,255,.2);font-size:12px;color:#b9d8e8}.qc{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.qc .item{min-height:68px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px}.table{width:100%;border-collapse:collapse;font-size:12px}.table th,.table td{padding:8px;border-bottom:1px solid #193047;text-align:left;white-space:nowrap}.table th{color:var(--muted);background:#0b1828}.footer{position:fixed;bottom:0;left:0;right:0;background:rgba(7,17,31,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:9px;text-align:center;font-size:11px;color:var(--muted)}@media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr)}.qc{grid-template-columns:1fr 1fr}.app{padding-left:10px;padding-right:10px}}@media(max-width:430px){.qc{grid-template-columns:1fr}.btn{width:100%}.row .btn{width:auto}}
+*{box-sizing:border-box}html,body{margin:0;background:linear-gradient(180deg,#06101c,#091728 55%,#07111f);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}body{min-height:100vh}.app{max-width:1100px;margin:auto;padding:14px 14px 90px}.top{position:sticky;top:0;z-index:5;background:rgba(7,17,31,.92);backdrop-filter:blur(12px);padding:10px 0 12px;border-bottom:1px solid var(--line)}h1{font-size:21px;margin:0}.sub{font-size:12px;color:var(--muted);margin-top:3px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.card{background:linear-gradient(180deg,var(--panel),#0a1727);border:1px solid var(--line);border-radius:16px;padding:13px;box-shadow:0 8px 30px rgba(0,0,0,.16)}.stat b{font-size:21px}.stat span{display:block;color:var(--muted);font-size:11px;margin-top:3px}.tabs{display:flex;gap:7px;overflow:auto;padding:12px 0}.tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:9px 12px}.tabs button.active{color:#00151e;background:var(--cyan);border-color:var(--cyan);font-weight:700}.section{display:none}.section.active{display:block}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.btn{border:1px solid var(--line);background:#13243a;color:var(--text);padding:11px 14px;border-radius:11px;font-weight:700}.btn.primary{background:var(--cyan);color:#00131c;border-color:var(--cyan)}.btn.good{background:rgba(85,227,155,.12);border-color:rgba(85,227,155,.45);color:var(--green)}.btn.warn{background:rgba(255,200,87,.1);border-color:rgba(255,200,87,.4);color:var(--amber)}.btn.danger{background:rgba(255,107,122,.1);border-color:rgba(255,107,122,.4);color:var(--red)}input,textarea,select{width:100%;background:#081525;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px;font:inherit}textarea{min-height:110px;line-height:1.45}.drop{border:1.5px dashed #3a5d7b;border-radius:15px;padding:22px;text-align:center;background:rgba(73,213,255,.03)}.drop.drag{border-color:var(--cyan);background:rgba(73,213,255,.08)}.pill{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:999px;background:#102237;color:var(--muted);font-size:11px}.pass{color:var(--green)}.review{color:var(--amber)}.fail{color:var(--red)}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.list{display:grid;gap:7px;margin-top:10px}.item{background:#0a1727;border:1px solid var(--line);border-radius:12px;padding:10px}.num{font-size:20px;font-weight:800;letter-spacing:1px}.rank{font-size:11px;color:var(--muted)}.bar{height:7px;border-radius:9px;background:#172a40;overflow:hidden;margin-top:7px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:9px}.small{font-size:12px;color:var(--muted)}.notice{padding:10px 12px;border-radius:11px;background:rgba(73,213,255,.07);border:1px solid rgba(73,213,255,.2);font-size:12px;color:#b9d8e8}.qc{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.qc .item{min-height:68px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px}.table{width:100%;border-collapse:collapse;font-size:12px}.table th,.table td{padding:8px;border-bottom:1px solid #193047;text-align:left;white-space:nowrap}.table th{color:var(--muted);background:#0b1828}.footer{position:fixed;bottom:0;left:0;right:0;background:rgba(7,17,31,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:9px;text-align:center;font-size:11px;color:var(--muted)}.status{margin-top:9px}.mutedbox{padding:9px;border:1px solid var(--line);border-radius:10px;background:#081525}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}@media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr)}.qc{grid-template-columns:1fr 1fr}}@media(max-width:430px){.qc{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.btn{width:100%}.row .btn{width:auto}}
 </style>
 </head>
 <body>
 <div class="app">
-<header class="top"><h1>🔬 NEXUS-X Ω Research Lab</h1><div class="sub">Android V3 · Fully browser-based · VERIFY → ANALYZE → BACKTEST → AUDIT → RANK</div></header>
+<header class="top"><h1>🔬 NEXUS-X Ω Research Lab</h1><div class="sub">Android V4 · VERIFY → ANALYZE → BACKTEST → AUDIT → RANK</div></header>
+
 <div class="grid">
-<div class="card stat"><b id="drawCount">0</b><span>Verified draws</span></div><div class="card stat"><b id="endpointCount">0</b><span>Historical endpoints</span></div><div class="card stat"><b id="lastDate">—</b><span>Latest dataset date</span></div><div class="card stat"><b id="lockCount">0</b><span>Locked cycles</span></div>
+<div class="card stat"><b id="drawCount">0</b><span>Verified draws</span></div>
+<div class="card stat"><b id="endpointCount">0</b><span>Historical endpoints</span></div>
+<div class="card stat"><b id="lastDate">—</b><span>Latest dataset date</span></div>
+<div class="card stat"><b id="lockCount">0</b><span>Locked cycles</span></div>
 </div>
-<nav class="tabs"><button class="active" data-tab="control">Control</button><button data-tab="pdf">PDF / QC</button><button data-tab="data">Dataset</button><button data-tab="tracka">Track A</button><button data-tab="trackb">Track B</button><button data-tab="audit">Audit</button><button data-tab="backtest">Backtest</button></nav>
+
+<nav class="tabs">
+<button class="active" data-tab="control">Control</button>
+<button data-tab="pdf">PDF / QC</button>
+<button data-tab="data">Dataset</button>
+<button data-tab="tracka">Track A</button>
+<button data-tab="trackb">Track B</button>
+<button data-tab="audit">Audit</button>
+<button data-tab="backtest">Backtest</button>
+</nav>
 
 <section id="control" class="section active">
-<div class="card"><h2>Control Room</h2><div class="notice">Historical PDF records are permanent research data only after QC PASS. User candidates are isolated from the historical dataset and never trained back into it.</div><div class="row" style="margin-top:12px"><button class="btn primary" onclick="tab('pdf')">Upload next PDF</button><button class="btn" onclick="seedReset()">Reset to bundled baseline</button><button class="btn" onclick="exportState()">Export research JSON</button></div></div>
-<div class="card" style="margin-top:10px"><h3>Integrity rules</h3><div class="list"><div class="item">🟢 PASS → dataset append allowed</div><div class="item">🟠 REVIEW → no automatic append</div><div class="item">🔴 FAIL → ranking blocked</div><div class="item">🔒 Locked Track A/B cannot be edited after result</div></div></div>
+<div class="card">
+<h2>Control Room</h2>
+<div class="notice">Historical PDF records become permanent research data only after QC PASS. Track A candidates remain temporary and isolated from historical/training data.</div>
+<div id="migrationStatus" class="status small">Checking local research database…</div>
+<div class="row" style="margin-top:12px">
+<button class="btn primary" onclick="tab('pdf')">Upload next PDF</button>
+<button class="btn" onclick="seedReset()">Reset to bundled baseline</button>
+<button class="btn" onclick="exportState()">Export research JSON</button>
+</div>
+</div>
+<div class="card" style="margin-top:10px">
+<h3>Integrity rules</h3>
+<div class="list">
+<div class="item">🟢 PASS → dataset append allowed</div>
+<div class="item">🟠 REVIEW → no automatic append</div>
+<div class="item">🔴 FAIL → ranking/data update blocked</div>
+<div class="item">🔒 A + B lock stores the pre-result dataset date and candidate lists</div>
+</div>
+</div>
 </section>
 
 <section id="pdf" class="section">
-<div class="card"><h2>PDF Upload + QC Gate</h2><div id="drop" class="drop"><strong>Select Kerala State Lottery result PDF</strong><div class="small" style="margin:7px 0 12px">Parsing happens inside this browser. No Python server is required.</div><input id="pdfFile" type="file" accept="application/pdf"></div><div id="pdfStatus" class="small" style="margin-top:10px">No PDF processed.</div><div id="qc" class="qc"></div><div class="row" style="margin-top:12px"><button id="appendBtn" class="btn good" disabled>PASS → Append to dataset</button><button id="inspectBtn" class="btn" disabled>Inspect extracted records</button></div></div>
+<div class="card">
+<h2>PDF Upload + QC Gate</h2>
+<div id="drop" class="drop">
+<strong>Select Kerala State Lottery result PDF</strong>
+<div class="small" style="margin:7px 0 12px">Parsing happens inside this browser. No Python server is required.</div>
+<input id="pdfFile" type="file" accept="application/pdf">
+</div>
+<div id="pdfStatus" class="small" style="margin-top:10px">No PDF processed.</div>
+<div id="qc" class="qc"></div>
+<div class="row" style="margin-top:12px">
+<button id="appendBtn" class="btn good" disabled>PASS → Append to dataset</button>
+<button id="inspectBtn" class="btn" disabled>Inspect extracted records</button>
+</div>
+</div>
 <div class="card" style="margin-top:10px"><h3>QC report</h3><div id="qcDetails" class="small">Upload a PDF to begin.</div></div>
 </section>
 
-<section id="data" class="section"><div class="card"><h2>Permanent Dataset</h2><div class="row"><input id="dataSearch" placeholder="Search number / date / tier"><button class="btn" onclick="renderData()">Refresh</button></div><div id="dataTable" style="margin-top:10px"></div></div></section>
+<section id="data" class="section">
+<div class="card">
+<h2>Permanent Dataset</h2>
+<div class="row"><input id="dataSearch" placeholder="Search number / date / tier"><button class="btn" onclick="renderData()">Refresh</button></div>
+<div id="dataTable" style="margin-top:10px"></div>
+</div>
+</section>
 
-<section id="tracka" class="section"><div class="card"><h2>Track A · Human Intuition</h2><div class="notice">Candidate input is temporary. It is evaluated against history but is never inserted into the historical/training dataset.</div><textarea id="candInput" placeholder="Enter 4-digit candidates, one per line or comma-separated\nExample:\n1117\n6088\n8702"></textarea><div class="row" style="margin-top:10px"><button class="btn primary" onclick="evaluateA()">Evaluate Track A</button><button class="btn danger" onclick="clearCandidates()">Clear</button></div><div id="aResults" class="list"></div><div id="aLock" style="margin-top:10px"></div></div></section>
+<section id="tracka" class="section">
+<div class="card">
+<h2>Track A · Human Intuition</h2>
+<div class="notice">Candidate input is temporary. It is evaluated against history but is never inserted into the historical/training dataset.</div>
+<textarea id="candInput" placeholder="Enter 4-digit candidates, one per line or comma-separated
+Example:
+1117
+6088
+8702"></textarea>
+<div class="row" style="margin-top:10px">
+<button class="btn primary" onclick="evaluateA()">Evaluate Track A</button>
+<button class="btn danger" onclick="clearCandidates()">Clear</button>
+</div>
+<div id="aResults" class="list"></div>
+<div id="aLock" style="margin-top:10px"></div>
+</div>
+</section>
 
-<section id="trackb" class="section"><div class="card"><h2>Track B · Blind NEXUS-X</h2><div class="notice">Track B is generated from historical data only. Track A candidates are not read or used here.</div><div class="row" style="margin-top:10px"><button class="btn primary" onclick="generateB()">Generate Blind Research List</button><button class="btn good" onclick="lockCycle()">Lock A + B</button></div><div id="bResults" class="list"></div></div></section>
+<section id="trackb" class="section">
+<div class="card">
+<h2>Track B · Blind NEXUS-X</h2>
+<div class="notice">Track B is candidate-blind: it reads historical records only and does not access Track A input/results.</div>
+<div class="row" style="margin-top:10px">
+<button class="btn primary" onclick="generateB()">Generate Blind Research List</button>
+<button class="btn good" onclick="lockCycle()">Lock A + B</button>
+</div>
+<div id="bResults" class="list"></div>
+</div>
+</section>
 
-<section id="audit" class="section"><div class="card"><h2>Result Audit</h2><div class="notice">Upload the next official result PDF. The app compares it against the most recent immutable lock.</div><div id="auditBox" class="list"></div><div class="row" style="margin-top:10px"><button class="btn" onclick="tab('pdf')">Process next result PDF</button></div></div></section>
+<section id="audit" class="section">
+<div class="card">
+<h2>Result Audit</h2>
+<div class="notice">Upload the next official result PDF. After QC PASS, the app audits the newest result against the most recent immutable A+B cycle.</div>
+<div id="auditBox" class="list"></div>
+<div class="row" style="margin-top:10px"><button class="btn" onclick="tab('pdf')">Process next result PDF</button></div>
+</div>
+</section>
 
-<section id="backtest" class="section"><div class="card"><h2>Backtest + Signal Audit</h2><div class="row"><select id="btWindow"><option value="5">Recent 5 draws</option><option value="10" selected>Recent 10 draws</option><option value="15">Recent 15 draws</option></select><button class="btn primary" onclick="runBacktest()">Run audit</button></div><div id="btResults" class="list"></div></div></section>
-</div><div class="footer">NEXUS-X Ω · Research evidence only · Scores are not probabilities or guarantees</div>
+<section id="backtest" class="section">
+<div class="card">
+<h2>Backtest + Signal Audit</h2>
+<div class="grid2">
+<select id="btWindow"><option value="5">Recent 5 draws</option><option value="10" selected>Recent 10 draws</option><option value="15">Recent 15 draws</option></select>
+<button class="btn primary" onclick="runBacktest()">Run audit</button>
+</div>
+<div id="btResults" class="list"></div>
+</div>
+</section>
+
+</div>
+<div class="footer">NEXUS-X Ω · Research evidence only · Scores are not probabilities or guarantees</div>
+
 <script type="module">
 const PDFJS='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/5.4.54/pdf.min.mjs';
-let pdfjs=null, pending=null, lastExtract=[]; const DB='nexus_x_omega_v3';
-const prizeMap={4:{tier:'4th',amount:5000,weight:6},5:{tier:'5th',amount:2000,weight:5},6:{tier:'6th',amount:1000,weight:4},7:{tier:'7th',amount:500,weight:3},8:{tier:'8th',amount:200,weight:2},9:{tier:'9th',amount:100,weight:1}};
-const $=id=>document.getElementById(id); const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-function tab(id){document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('active',x.dataset.tab===id)); if(id==='data')renderData(); if(id==='audit')renderAudit();}
-window.tab=tab; document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
-async function initPDF(){try{pdfjs=await import(PDFJS);pdfjs.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/5.4.54/pdf.worker.min.mjs';return true}catch(e){$('pdfStatus').textContent='PDF engine could not load. Open once with internet access, then reload.';return false}}
-const req=()=>new Promise((res,rej)=>{const r=indexedDB.open(DB,1);r.onupgradeneeded=()=>{const d=r.result; if(!d.objectStoreNames.contains('draws'))d.createObjectStore('draws',{keyPath:'id'}); if(!d.objectStoreNames.contains('records')){let s=d.createObjectStore('records',{keyPath:'id'});s.createIndex('date','date');s.createIndex('num','num');} if(!d.objectStoreNames.contains('locks'))d.createObjectStore('locks',{keyPath:'id'});};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
-async function tx(store,mode='readonly'){const d=await req();return d.transaction(store,mode).objectStore(store)}
-async function all(store){const s=await tx(store);return new Promise((res,rej)=>{let r=s.getAll();r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
-async function put(store,v){const s=await tx(store,'readwrite');return new Promise((res,rej)=>{let r=s.put(v);r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
-async function clearStore(store){const s=await tx(store,'readwrite');return new Promise((res,rej)=>{let r=s.clear();r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
-async function count(store){const s=await tx(store);return new Promise((res,rej)=>{let r=s.count();r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
-async function bulkPut(store,arr){const d=await req();return new Promise((res,rej)=>{const t=d.transaction(store,'readwrite'),s=t.objectStore(store);arr.forEach(v=>s.put(v));t.oncomplete=res;t.onerror=()=>rej(t.error)})}
+const DB='nexus_x_omega_v4';
+const OLD_DB='nexus_x_omega_v3';
+const prizeMap={
+  5000:{tier:'4th',weight:6},
+  2000:{tier:'5th',weight:5},
+  1000:{tier:'6th',weight:4},
+  500:{tier:'7th',weight:3},
+  200:{tier:'8th',weight:2},
+  100:{tier:'9th',weight:1}
+};
+let pdfjs=null,pending=null,lastExtract=[],currentA=[],currentB=[];
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+function tab(id){
+  document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===id));
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));
+  if(id==='data')renderData();
+  if(id==='audit')renderAudit();
+}
+window.tab=tab;
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+
+async function initPDF(){
+  try{
+    pdfjs=await import(PDFJS);
+    pdfjs.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/5.4.54/pdf.worker.min.mjs';
+    return true;
+  }catch(e){
+    $('pdfStatus').textContent='PDF engine could not load. Open once with internet access, then reload.';
+    return false;
+  }
+}
+
+function openDB(name){
+  return new Promise((res,rej)=>{
+    const r=indexedDB.open(name,1);
+    r.onupgradeneeded=()=>{
+      const d=r.result;
+      if(!d.objectStoreNames.contains('draws'))d.createObjectStore('draws',{keyPath:'id'});
+      if(!d.objectStoreNames.contains('records')){
+        const s=d.createObjectStore('records',{keyPath:'id'});
+        s.createIndex('date','date');s.createIndex('num','num');
+      }
+      if(!d.objectStoreNames.contains('locks'))d.createObjectStore('locks',{keyPath:'id'});
+    };
+    r.onsuccess=()=>res(r.result);
+    r.onerror=()=>rej(r.error);
+  });
+}
+async function tx(store,mode='readonly'){
+  const d=await openDB(DB);
+  return d.transaction(store,mode).objectStore(store);
+}
+async function all(store){
+  const s=await tx(store);
+  return new Promise((res,rej)=>{const r=s.getAll();r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+}
+async function put(store,v){
+  const s=await tx(store,'readwrite');
+  return new Promise((res,rej)=>{const r=s.put(v);r.onsuccess=()=>res();r.onerror=()=>rej(r.error)});
+}
+async function clearStore(store){
+  const s=await tx(store,'readwrite');
+  return new Promise((res,rej)=>{const r=s.clear();r.onsuccess=()=>res();r.onerror=()=>rej(r.error)});
+}
+async function count(store){
+  const s=await tx(store);
+  return new Promise((res,rej)=>{const r=s.count();r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+}
+async function bulkPut(store,arr){
+  if(!arr.length)return;
+  const d=await openDB(DB);
+  return new Promise((res,rej)=>{
+    const t=d.transaction(store,'readwrite'),s=t.objectStore(store);
+    arr.forEach(v=>s.put(v));t.oncomplete=res;t.onerror=()=>rej(t.error);
+  });
+}
+
 function family(n){return n.split('').sort().join('')}
 function rot(n,k=1){return n.slice(k)+n.slice(0,k)}
 function reverse(n){return n.split('').reverse().join('')}
 function mirror(n){return n.split('').map(x=>String(9-Number(x))).join('')}
-function has369(n){return /[369]/.test(n)} function root(n){return [...n].reduce((a,b)=>a+Number(b),0)%9||9} function sum(n){return [...n].reduce((a,b)=>a+Number(b),0)}
-function normalizeCandidateList(v){return [...new Set(v.split(/[\s,;]+/).map(x=>x.trim()).filter(x=>/^\d{4}$/.test(x)))];}
+function has369(n){return /[369]/.test(n)}
+function digitSum(n){return [...n].reduce((a,b)=>a+Number(b),0)}
+function root(n){return digitSum(n)%9||9}
+function mod3(n){return digitSum(n)%3}
+function normalizeNum(n){return String(n??'').trim().padStart(4,'0')}
 function recordId(r){return `${r.date}|${r.tier}|${r.num}|${r.source||''}`}
-async function seedIfEmpty(){if(await count('records'))return; const r=await fetch('./seed_dataset.json').then(x=>x.json()); const clean=r.filter(x=>/^\d{4}$/.test(x.num)&&/^\d{4}-\d{2}-\d{2}$/.test(x.date)); const rows=clean.map(x=>({id:recordId(x),...x,num:String(x.num).padStart(4,'0')})); await bulkPut('records',rows); const dates=[...new Set(rows.map(x=>x.date))].sort(); await bulkPut('draws',dates.map(d=>({id:d,date:d,source:'bundled baseline',status:'PASS'})));}
-async function stats(){const rs=await all('records');const ds=[...new Set(rs.map(x=>x.date))].sort();$('drawCount').textContent=ds.length;$('endpointCount').textContent=rs.filter(x=>x.tier&&x.tier!=='1st'&&x.tier!=='2nd'&&x.tier!=='3rd').length;$('lastDate').textContent=ds.at(-1)||'—';$('lockCount').textContent=await count('locks')}
-function extractTextItems(page){return page.getTextContent({normalizeWhitespace:true}).then(c=>c.items.map(i=>i.str).join(' '))}
-async function parsePDF(file){if(!pdfjs)await initPDF();const buf=await file.arrayBuffer();const pdf=await pdfjs.getDocument({data:buf}).promise;let pages=[];for(let p=1;p<=pdf.numPages;p++)pages.push(await extractTextItems(await pdf.getPage(p)));let raw=pages.join('\n');const drawMatch=raw.match(/DRAW\s+held\s+on[:\-]*\s*(\d{2}\/\d{2}\/\d{4})\s*,?\s*([0-9: ]+PM|[0-9: ]+AM)/i)||raw.match(/held\s+on[:\-]*\s*(\d{2}\/\d{2}\/\d{4})/i);const date=drawMatch?drawMatch[1].split('/').reverse().join('-'):'';const drawId=(raw.match(/LOTTERY\s+NO\.\s*([A-Z0-9-]+)/i)||[])[1]||'';const noFooter=raw.replace(/\b\d{2}\/\d{2}\/\d{4}\b/g,' ');let records=[];for(let k=4;k<=9;k++){const next=k+1;const label=new RegExp(`${k}(?:th|st|nd|rd)\\s+Prize\\s*-?\\s*Rs\\s*:?\\s*[0-9,]+\\s*/?-?`, 'i');const m=noFooter.match(label);if(!m)continue;const start=m.index+m[0].length;let end=noFooter.length;if(k<9){const nm=new RegExp(`${next}(?:th|st|nd|rd)\\s+Prize\\s*-?\\s*Rs`, 'i').exec(noFooter.slice(start));if(nm)end=start+nm.index}const block=noFooter.slice(start,end);const nums=[...block.matchAll(/(?<!\d)(\d{4})(?!\d)/g)].map(m=>m[1]);const info=prizeMap[k];nums.forEach(num=>records.push({date,tier:info.tier,prize:info.amount,weight:info.weight,num,source:file.name}));}return {pages:pdf.numPages,date,drawId,records,rawLength:raw.length,file:file.name}}
-function qcReport(parsed){const checks=[];checks.push(['PDF pages',parsed.pages>=1,'']);checks.push(['Draw date',/^2026-\d{2}-\d{2}$/.test(parsed.date),parsed.date||'missing']);const tiers=[...new Set(parsed.records.map(x=>x.tier))];checks.push(['4th–9th tiers',tiers.length===6,tiers.join(', ')||'missing']);checks.push(['4-digit records',parsed.records.length>0,String(parsed.records.length)]);const dup=parsed.records.length-new Set(parsed.records.map(x=>x.tier+'|'+x.num)).size;checks.push(['Tier duplicates',dup===0,dup?String(dup):'none']);const bad=parsed.records.filter(x=>!/^[0-9]{4}$/.test(x.num));checks.push(['4-digit format',bad.length===0,bad.length?String(bad.length):'PASS']);const byTier={};for(const r of parsed.records)(byTier[r.tier]??=[]).push(r.num);const suspicious=parsed.records.filter(r=>r.num==='2026').length;checks.push(['Footer/artifact 2026',suspicious===0,suspicious?`found ${suspicious}`:'none']);const pass=checks.every(x=>x[1]);return {pass,checks}}
-function showQC(parsed,qc){$('pdfStatus').innerHTML=`<span class="pill">${esc(parsed.file)}</span> · ${parsed.pages} pages · ${parsed.date||'date missing'} · ${parsed.records.length} records`;$('qc').innerHTML=qc.checks.map(c=>`<div class="item"><b class="${c[1]?'pass':'fail'}">${c[1]?'PASS':'FAIL'}</b><div>${esc(c[0])}</div><div class="small">${esc(c[2])}</div></div>`).join('');$('qcDetails').innerHTML=`<div class="notice">${qc.pass?'🟢 QC PASS — dataset append is permitted.':'🔴 QC FAIL — automatic dataset append is blocked.'}</div><div style="margin-top:8px">Draw: <b>${esc(parsed.drawId||'—')}</b> · Date: <b>${esc(parsed.date||'—')}</b> · Extracted: <b>${parsed.records.length}</b></div>`;$('appendBtn').disabled=!qc.pass;pending=qc.pass?parsed:null;$('inspectBtn').disabled=false}
-$('pdfFile').onchange=e=>e.target.files[0]&&processFile(e.target.files[0]);async function processFile(file){$('pdfStatus').textContent='Parsing PDF locally in browser…';try{const p=await parsePDF(file);lastExtract=p.records;const q=qcReport(p);showQC(p,q)}catch(e){pending=null;$('appendBtn').disabled=true;$('pdfStatus').textContent='PDF parsing failed: '+e.message;$('qcDetails').textContent='No dataset change was made.'}}
-$('appendBtn').onclick=async()=>{if(!pending)return;const exists=await all('draws');if(exists.some(d=>d.date===pending.date)){alert('This draw date already exists. Duplicate draw blocked.');return}const rows=pending.records.map(x=>({id:recordId(x),...x}));await bulkPut('records',rows);await put('draws',{id:pending.date,date:pending.date,drawId:pending.drawId,source:pending.file,status:'PASS',records:rows.length});await stats();$('pdfStatus').textContent=`APPENDED: ${pending.date} · ${rows.length} records`;pending=null;$('appendBtn').disabled=true;renderData();auditAgainstLatest(rows);}
-$('inspectBtn').onclick=()=>{if(!lastExtract.length)return;alert(lastExtract.slice(0,80).map(x=>`${x.tier} ₹${x.prize}: ${x.num}`).join('\n'))}
-const drop=$('drop');['dragenter','dragover'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.add('drag')}));['dragleave','drop'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.remove('drag')}));drop.addEventListener('drop',ev=>ev.dataTransfer.files[0]&&processFile(ev.dataTransfer.files[0]));
-async function renderData(){const rs=(await all('records')).sort((a,b)=>a.date.localeCompare(b.date)||a.tier.localeCompare(b.tier));const q=($('dataSearch').value||'').toLowerCase();const f=rs.filter(x=>!q||x.date.includes(q)||x.num.includes(q)||String(x.tier).toLowerCase().includes(q));$('dataTable').innerHTML=`<div class="small">Showing ${Math.min(f.length,250)} of ${f.length} matching records.</div><div class="tablewrap"><table class="table"><thead><tr><th>Date</th><th>Tier</th><th>₹</th><th>Number</th></tr></thead><tbody>${f.slice(-250).reverse().map(x=>`<tr><td>${x.date}</td><td>${x.tier}</td><td>${x.prize}</td><td class="mono">${x.num}</td></tr>`).join('')}</tbody></table></div>`}
+function normalizeRecord(x){
+  const num=normalizeNum(x.num);
+  const prize=Number(x.prize);
+  const map=prizeMap[prize];
+  if(!/^\d{4}$/.test(num)||num==='2026'||!map||!/^\d{4}-\d{2}-\d{2}$/.test(String(x.date)))return null;
+  return {
+    id:recordId({date:x.date,tier:map.tier,num,source:x.source||'unknown'}),
+    date:x.date,tier:map.tier,prize,weight:map.weight,num,source:x.source||'unknown'
+  };
+}
+
+async function readOldDB(){
+  return new Promise((resolve)=>{
+    const r=indexedDB.open(OLD_DB);
+    r.onerror=()=>resolve(null);
+    r.onsuccess=()=>{
+      const d=r.result;
+      if(!d.objectStoreNames.contains('records')){d.close();resolve(null);return}
+      const out={};
+      const names=['records','draws','locks'];
+      let remaining=names.length;
+      names.forEach(name=>{
+        if(!d.objectStoreNames.contains(name)){out[name]=[];if(!--remaining){d.close();resolve(out)};return}
+        const q=d.transaction(name,'readonly').objectStore(name).getAll();
+        q.onsuccess=()=>{out[name]=q.result||[];if(!--remaining){d.close();resolve(out)}};
+        q.onerror=()=>{out[name]=[];if(!--remaining){d.close();resolve(out)}};
+      });
+    };
+  });
+}
+
+async function rebuildDraws(records,oldDraws=[]){
+  const byDate=new Map();
+  for(const r of records){
+    if(!byDate.has(r.date))byDate.set(r.date,{id:r.date,date:r.date,source:r.source,status:'PASS',records:0});
+    byDate.get(r.date).records++;
+  }
+  for(const d of oldDraws||[])if(d.date&&!byDate.has(d.date))byDate.set(d.date,{...d});
+  return [...byDate.values()].sort((a,b)=>a.date.localeCompare(b.date));
+}
+
+async function seedBaseline(){
+  const raw=JSON.parse(new TextDecoder().decode(await (await fetch('./seed_dataset.json')).arrayBuffer()));
+  const rows=[];
+  const seen=new Set();
+  let removed=0;
+  for(const x of raw){
+    const r=normalizeRecord(x);
+    if(!r){removed++;continue}
+    if(seen.has(r.id)){continue}
+    seen.add(r.id);rows.push(r);
+  }
+  await bulkPut('records',rows);
+  await bulkPut('draws',await rebuildDraws(rows));
+  return {rows,removed,source:'bundled baseline'};
+}
+
+async function migrateV3IfPresent(){
+  const old=await readOldDB();
+  if(!old||!old.records?.length)return null;
+  const rows=[],seen=new Set();let removed=0;
+  for(const x of old.records){
+    const r=normalizeRecord(x);
+    if(!r){removed++;continue}
+    if(seen.has(r.id))continue;
+    seen.add(r.id);rows.push(r);
+  }
+  await bulkPut('records',rows);
+  await bulkPut('draws',await rebuildDraws(rows,old.draws));
+  if(old.locks?.length)await bulkPut('locks',old.locks);
+  return {rows,removed,source:'migrated from V3'};
+}
+
+async function ensureData(){
+  const n=await count('records');
+  if(n>0)return {source:'existing V4 data',rows:n,removed:0};
+  const migrated=await migrateV3IfPresent();
+  if(migrated)return migrated;
+  const seeded=await seedBaseline();
+  return {rows:seeded.rows.length,removed:seeded.removed,source:'bundled baseline'};
+}
+
+async function stats(){
+  const rs=await all('records');
+  const ds=[...new Set(rs.map(x=>x.date))].sort();
+  const ls=await all('locks');
+  $('drawCount').textContent=ds.length;
+  $('endpointCount').textContent=rs.length;
+  $('lastDate').textContent=ds.at(-1)||'—';
+  $('lockCount').textContent=ls.filter(x=>x.type==='CYCLE').length;
+}
+
+async function showInitStatus(info){
+  await stats();
+  const rs=await all('records');
+  const ds=[...new Set(rs.map(x=>x.date))].sort();
+  const suffix=info.removed?` · ${info.removed} invalid/artifact records excluded during normalization`:''; 
+  $('migrationStatus').textContent=`Database: ${info.source} · ${ds.length} verified draw dates · ${rs.length} clean 4-digit endpoints${suffix}.`;
+}
+
+function extractTextItems(page){
+  return page.getTextContent({normalizeWhitespace:true}).then(c=>c.items.map(i=>i.str).join(' '));
+}
+
+async function parsePDF(file){
+  if(!pdfjs)await initPDF();
+  if(!pdfjs)throw new Error('PDF engine unavailable');
+  const buf=await file.arrayBuffer();
+  const pdf=await pdfjs.getDocument({data:buf}).promise;
+  const pages=[];
+  for(let p=1;p<=pdf.numPages;p++)pages.push(await extractTextItems(await pdf.getPage(p)));
+  const raw=pages.join('\n');
+  const drawMatch=raw.match(/DRAW\s+held\s+on[:\-]*\s*(\d{2}\/\d{2}\/\d{4})/i)||raw.match(/held\s+on[:\-]*\s*(\d{2}\/\d{2}\/\d{4})/i);
+  const date=drawMatch?drawMatch[1].split('/').reverse().join('-'):'';
+  const drawId=(raw.match(/LOTTERY\s+NO\.\s*([A-Z0-9-]+)/i)||[])[1]||'';
+  const noFooter=raw.replace(/\b\d{2}\/\d{2}\/\d{4}\b/g,' ');
+  const labels=[
+    {prize:5000,next:2000},{prize:2000,next:1000},{prize:1000,next:500},
+    {prize:500,next:200},{prize:200,next:100},{prize:100,next:null}
+  ];
+  const records=[];
+  for(const item of labels){
+    const info=prizeMap[item.prize];
+    const label=new RegExp(`(?:${info.tier}|${item.prize})\\s+Prize\\s*-?\\s*Rs\\s*:?\\s*[0-9,]+\\s*/?-?`,'i');
+    const m=noFooter.match(label);
+    if(!m)continue;
+    const start=m.index+m[0].length;
+    let end=noFooter.length;
+    if(item.next){
+      const nextInfo=prizeMap[item.next];
+      const nm=new RegExp(`(?:${nextInfo.tier}|${item.next})\\s+Prize\\s*-?\\s*Rs`,'i').exec(noFooter.slice(start));
+      if(nm)end=start+nm.index;
+    }
+    const block=noFooter.slice(start,end);
+    const nums=[...block.matchAll(/(?<!\d)(\d{4})(?!\d)/g)].map(m=>m[1]);
+    nums.forEach(num=>{
+      if(num==='2026')return;
+      records.push({date,tier:info.tier,prize:item.prize,weight:info.weight,num,source:file.name});
+    });
+  }
+  return {pages:pdf.numPages,date,drawId,records,rawLength:raw.length,file:file.name};
+}
+
+function qcReport(parsed){
+  const checks=[];
+  checks.push(['PDF pages',parsed.pages>=1,String(parsed.pages)]);
+  checks.push(['Draw date',/^\d{4}-\d{2}-\d{2}$/.test(parsed.date),parsed.date||'missing']);
+  const tiers=[...new Set(parsed.records.map(x=>x.tier))];
+  checks.push(['4th–9th tiers',tiers.length===6,tiers.join(', ')||'missing']);
+  checks.push(['4-digit records',parsed.records.length>0,String(parsed.records.length)]);
+  const dup=parsed.records.length-new Set(parsed.records.map(x=>x.tier+'|'+x.num)).size;
+  checks.push(['Tier duplicates',dup===0,dup?String(dup):'none']);
+  const bad=parsed.records.filter(x=>!/^\d{4}$/.test(x.num));
+  checks.push(['4-digit format',bad.length===0,bad.length?String(bad.length):'PASS']);
+  const pass=checks.every(x=>x[1]);
+  return {pass,checks};
+}
+
+function showQC(parsed,qc){
+  $('pdfStatus').innerHTML=`<span class="pill">${esc(parsed.file)}</span> · ${parsed.pages} pages · ${parsed.date||'date missing'} · ${parsed.records.length} clean endpoint records`;
+  $('qc').innerHTML=qc.checks.map(c=>`<div class="item"><b class="${c[1]?'pass':'fail'}">${c[1]?'PASS':'FAIL'}</b><div>${esc(c[0])}</div><div class="small">${esc(c[2])}</div></div>`).join('');
+  $('qcDetails').innerHTML=`<div class="notice">${qc.pass?'🟢 QC PASS — dataset append is permitted.':'🔴 QC FAIL — automatic dataset append is blocked.'}</div><div style="margin-top:8px">Draw: <b>${esc(parsed.drawId||'—')}</b> · Date: <b>${esc(parsed.date||'—')}</b> · Extracted: <b>${parsed.records.length}</b></div>`;
+  $('appendBtn').disabled=!qc.pass;
+  pending=qc.pass?parsed:null;
+  $('inspectBtn').disabled=!parsed.records.length;
+}
+
+$('pdfFile').onchange=e=>e.target.files[0]&&processFile(e.target.files[0]);
+async function processFile(file){
+  $('pdfStatus').textContent='Parsing PDF locally in browser…';
+  try{
+    const p=await parsePDF(file);
+    lastExtract=p.records;
+    const q=qcReport(p);
+    showQC(p,q);
+  }catch(e){
+    pending=null;$('appendBtn').disabled=true;
+    $('pdfStatus').textContent='PDF parsing failed: '+e.message;
+    $('qcDetails').textContent='No dataset change was made.';
+  }
+}
+$('appendBtn').onclick=async()=>{
+  if(!pending)return;
+  const exists=await all('draws');
+  if(exists.some(d=>d.date===pending.date)){alert('This draw date already exists. Duplicate draw blocked.');return}
+  const rows=pending.records.map(x=>normalizeRecord(x)).filter(Boolean);
+  if(!rows.length){alert('No clean 4-digit records available to append.');return}
+  await bulkPut('records',rows);
+  await put('draws',{id:pending.date,date:pending.date,drawId:pending.drawId,source:pending.file,status:'PASS',records:rows.length});
+  const appended=rows[0]?.date;
+  await stats();
+  $('pdfStatus').textContent=`APPENDED: ${appended} · ${rows.length} clean records`;
+  const auditResult=await auditAgainstLatest(rows);
+  pending=null;$('appendBtn').disabled=true;
+  renderData();renderAudit();
+  if(auditResult)alert(`Result appended and audited against locked cycle: ${auditResult.date}.`);
+};
+
+$('inspectBtn').onclick=()=>{
+  if(!lastExtract.length)return;
+  alert(lastExtract.slice(0,120).map(x=>`${x.tier} ₹${x.prize}: ${x.num}`).join('\n'));
+};
+
+const drop=$('drop');
+['dragenter','dragover'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.add('drag')}));
+['dragleave','drop'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.remove('drag')}));
+drop.addEventListener('drop',ev=>ev.dataTransfer.files[0]&&processFile(ev.dataTransfer.files[0]));
+
+async function renderData(){
+  const rs=(await all('records')).sort((a,b)=>a.date.localeCompare(b.date)||a.tier.localeCompare(b.tier)||a.num.localeCompare(b.num));
+  const q=($('dataSearch').value||'').toLowerCase();
+  const f=rs.filter(x=>!q||x.date.includes(q)||x.num.includes(q)||String(x.tier).toLowerCase().includes(q));
+  $('dataTable').innerHTML=`<div class="small">Showing ${Math.min(f.length,250)} of ${f.length} matching records.</div><div class="tablewrap"><table class="table"><thead><tr><th>Date</th><th>Tier</th><th>₹</th><th>Number</th></tr></thead><tbody>${f.slice(-250).reverse().map(x=>`<tr><td>${x.date}</td><td>${x.tier}</td><td>${x.prize}</td><td class="mono">${x.num}</td></tr>`).join('')}</tbody></table></div>`;
+}
 $('dataSearch').oninput=renderData;
-function scoreCandidate(n,rs){const draws=[...new Set(rs.map(x=>x.date))].sort();const exact=rs.filter(x=>x.num===n).length;const fam=family(n);const famHits=rs.filter(x=>family(x.num)===fam).length;const rotations=[rot(n,1),rot(n,2),rot(n,3)];const rotHits=rs.filter(x=>rotations.includes(x.num)).length;const rev=rs.filter(x=>x.num===reverse(n)).length;const mir=rs.filter(x=>x.num===mirror(n)).length;const recentDates=draws.slice(-15);const recent=new Set(recentDates);const recentExact=rs.filter(x=>recent.has(x.date)&&x.num===n).length;const weighted=rs.filter(x=>x.num===n).reduce((a,x)=>a+(Number(x.weight)||1),0);const s369=has369(n)?1:0;const r=root(n);const sums=sum(n);const familyRecent=rs.filter(x=>recent.has(x.date)&&family(x.num)===fam).length;let score=0;score+=Math.min(25,exact*8);score+=Math.min(20,famHits*0.7);score+=Math.min(15,rotHits*1.8);score+=Math.min(10,rev*3);score+=Math.min(10,mir*3);score+=Math.min(8,recentExact*6);score+=Math.min(7,weighted*0.35);score+=s369?2:0;score+=r===3||r===6||r===9?2:0;score+=Math.min(3,familyRecent*0.2);score=Math.min(100,Math.round(score));return {n,score,exact,famHits,rotHits,rev,mir,recentExact,weighted,root:r,sum:sums,family:fam,familyRecent,draws:draws.length}}
-async function evaluateA(){const cand=normalizeCandidateList($('candInput').value);if(!cand.length){$('aResults').innerHTML='<div class="item review">Enter valid 4-digit candidates.</div>';return}const rs=await all('records');const ranked=cand.map(n=>scoreCandidate(n,rs)).sort((a,b)=>b.score-a.score);window.currentA=ranked;$('aResults').innerHTML=ranked.map((x,i)=>`<div class="item"><div class="row"><div><span class="rank">#${i+1}</span> <span class="num mono">${x.n}</span></div><span class="pill">Evidence ${x.score}/100</span></div><div class="bar"><i style="width:${x.score}%"></i></div><div class="small" style="margin-top:7px">Exact ${x.exact} · Family ${x.famHits} · Rotation ${x.rotHits} · Reverse ${x.rev} · 9-Mirror ${x.mir} · Recent exact ${x.recentExact} · 369 ${has369(x.n)?'YES':'NO'} · Root ${x.root}</div></div>`).join('');$('aLock').innerHTML='<button class="btn warn" onclick="lockAOnly()">Lock Track A</button>'}
-async function lockAOnly(){if(!window.currentA?.length)return;const id='A-'+new Date().toISOString();await put('locks',{id,type:'A',created:new Date().toISOString(),candidates:JSON.parse(JSON.stringify(window.currentA)),immutable:true});await stats();$('aLock').innerHTML='<div class="notice">🔒 Track A locked. The ranking is immutable for this cycle.</div>'}
-async function generateB(){const rs=await all('records');const nums=[...new Set(rs.map(x=>x.num).filter(n=>/^\d{4}$/.test(n)))];const scored=nums.map(n=>scoreCandidate(n,rs));const familyMap={};scored.forEach(x=>(familyMap[x.family]??=[]).push(x));Object.values(familyMap).forEach(a=>a.sort((x,y)=>y.score-x.score));let pool=scored.sort((a,b)=>b.score-a.score).slice(0,250);const chosen=[];const seenFam=new Set();for(const x of pool){if(chosen.length>=15)break;if(!seenFam.has(x.family)||chosen.length<5){chosen.push(x);seenFam.add(x.family)}}window.currentB=chosen;$('bResults').innerHTML=chosen.map((x,i)=>`<div class="item"><div class="row"><div><span class="rank">#${i+1}</span> <span class="num mono">${x.n}</span></div><span class="pill">Blind evidence ${x.score}/100</span></div><div class="bar"><i style="width:${x.score}%"></i></div><div class="small">Family ${x.family} · Exact ${x.exact} · Rotation ${x.rotHits} · 9-Mirror ${x.mir} · 369 ${has369(x.n)?'YES':'NO'}</div></div>`).join('')}
-async function lockCycle(){if(!window.currentA?.length||!window.currentB?.length){alert('Evaluate Track A and generate Track B first.');return}const id='CYCLE-'+new Date().toISOString();await put('locks',{id,type:'CYCLE',created:new Date().toISOString(),trackA:JSON.parse(JSON.stringify(window.currentA)),trackB:JSON.parse(JSON.stringify(window.currentB)),immutable:true});await stats();alert('A + B locked. Do not edit before the next result.');renderAudit()}
-async function latestLock(){const ls=await all('locks');return ls.filter(x=>x.type==='CYCLE').sort((a,b)=>a.created.localeCompare(b.created)).at(-1)}
-async function auditAgainstLatest(newRows){const lock=await latestLock();if(!lock)return;const actual=new Set(newRows.map(x=>x.num));const evalSet=(arr)=>arr.map(x=>({n:x.n,hit:actual.has(x.n)}));const a=evalSet(lock.trackA),b=evalSet(lock.trackB);const rec={id:'AUDIT-'+Date.now(),lockId:lock.id,date:newRows[0]?.date,A:a,B:b};await put('locks',rec);renderAudit()}
-async function renderAudit(){const ls=await all('locks');const audits=ls.filter(x=>x.id?.startsWith('AUDIT-')).sort((a,b)=>b.id.localeCompare(a.id));const last=audits[0];if(!last){$('auditBox').innerHTML='<div class="item">No post-lock result audit yet.</div>';return}const hit=(a)=>a.filter(x=>x.hit).length;$('auditBox').innerHTML=`<div class="item"><b>${last.date}</b><div class="small">Track A exact hits: ${hit(last.A)} / ${last.A.length}</div><div class="small">Track B exact hits: ${hit(last.B)} / ${last.B.length}</div></div>`}
-async function runBacktest(){const rs=await all('records');const dates=[...new Set(rs.map(x=>x.date))].sort();const n=Number($('btWindow').value);const use=dates.slice(-n);const prior=rs.filter(x=>!use.includes(x.date));const actual=rs.filter(x=>use.includes(x.date));const exactSet=new Set(prior.map(x=>x.num));const famSet=new Set(prior.map(x=>family(x.num)));let exact=0,fam=0,rot=0,rev=0,mir=0;for(const x of actual){if(exactSet.has(x.num))exact++;if(famSet.has(family(x.num)))fam++;if(prior.some(p=>p.num===rot(x.num,1)||p.num===rot(x.num,2)||p.num===rot(x.num,3)))rot++;if(exactSet.has(reverse(x.num)))rev++;if(exactSet.has(mirror(x.num)))mir++}const total=actual.length||1;$('btResults').innerHTML=[['Exact',exact/total],['Family',fam/total],['Rotation',rot/total],['Reverse',rev/total],['9-Mirror',mir/total]].map(x=>`<div class="item"><b>${x[0]}</b><div class="bar"><i style="width:${Math.round(x[1]*100)}%"></i></div><div class="small">Observed hit rate: ${(x[1]*100).toFixed(2)}% over ${n} draws / ${total} records</div></div>`).join('')+`<div class="notice">This is descriptive walk-forward-style audit output. It is not a probability estimate or guarantee.</div>`}
-async function seedReset(){if(!confirm('Reset browser dataset to bundled baseline?'))return;await clearStore('records');await clearStore('draws');await clearStore('locks');await seedIfEmpty();await stats();alert('Baseline restored.')}
-async function exportState(){const data={version:'NEXUS-X Ω Android V3',exported:new Date().toISOString(),draws:await all('draws'),records:await all('records'),locks:await all('locks')};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download='nexus-x-omega-v3-export.json';a.click();URL.revokeObjectURL(a.href)}
-window.evaluateA=evaluateA;window.generateB=generateB;window.lockCycle=lockCycle;window.lockAOnly=lockAOnly;window.clearCandidates=()=>{$('candInput').value='';$('aResults').innerHTML='';$('aLock').innerHTML=''};window.seedReset=seedReset;window.exportState=exportState;window.runBacktest=runBacktest;window.renderData=renderData;
-(async()=>{await initPDF();await seedIfEmpty();await stats();})();
+
+function scoreCandidate(n,rs){
+  const draws=[...new Set(rs.map(x=>x.date))].sort();
+  const recentDates=draws.slice(-15),recent=new Set(recentDates);
+  const exactRows=rs.filter(x=>x.num===n);
+  const exact=exactRows.length;
+  const fam=family(n);
+  const famHits=rs.filter(x=>family(x.num)===fam).length;
+  const rotations=[rot(n,1),rot(n,2),rot(n,3)];
+  const rotHits=rs.filter(x=>rotations.includes(x.num)).length;
+  const rev=rs.filter(x=>x.num===reverse(n)).length;
+  const mir=rs.filter(x=>x.num===mirror(n)).length;
+  const recentExact=rs.filter(x=>recent.has(x.date)&&x.num===n).length;
+  const familyRecent=rs.filter(x=>recent.has(x.date)&&family(x.num)===fam).length;
+  const weighted=exactRows.reduce((a,x)=>a+(Number(x.weight)||1),0);
+  const lastExact=exactRows.map(x=>x.date).sort().at(-1);
+  const gap=lastExact?Math.max(0,draws.length-1-draws.indexOf(lastExact)):draws.length;
+  const sum=digitSum(n),r=root(n),m3=mod3(n);
+  let score=0;
+  score+=Math.min(24,exact*7);
+  score+=Math.min(18,famHits*0.55);
+  score+=Math.min(14,rotHits*1.4);
+  score+=Math.min(8,rev*2.5);
+  score+=Math.min(8,mir*2.5);
+  score+=Math.min(9,recentExact*6);
+  score+=Math.min(7,weighted*0.30);
+  score+=Math.min(5,familyRecent*0.25);
+  if(has369(n))score+=2;
+  if([3,6,9].includes(r))score+=2;
+  if(m3===0)score+=1;
+  if(gap===0)score+=1;
+  score=Math.min(100,Math.round(score));
+  return {n,score,exact,famHits,rotHits,rev,mir,recentExact,weighted,root:r,sum,family:fam,familyRecent,gap,lastExact:lastExact||'none',draws:draws.length};
+}
+
+async function evaluateA(){
+  const cand=normalizeCandidateList($('candInput').value);
+  if(!cand.length){$('aResults').innerHTML='<div class="item review">Enter valid 4-digit candidates.</div>';return}
+  const rs=await all('records');
+  currentA=cand.map(n=>scoreCandidate(n,rs)).sort((a,b)=>b.score-a.score);
+  window.currentA=currentA;
+  $('aResults').innerHTML=currentA.map((x,i)=>`<div class="item"><div class="row"><div><span class="rank">#${i+1}</span> <span class="num mono">${x.n}</span></div><span class="pill">Evidence ${x.score}/100</span></div><div class="bar"><i style="width:${x.score}%"></i></div><div class="small" style="margin-top:7px">Exact ${x.exact} · Family ${x.famHits} · Rotation ${x.rotHits} · Reverse ${x.rev} · 9-Mirror ${x.mir} · Recent exact ${x.recentExact} · Gap ${x.gap} draws · 369 ${has369(x.n)?'YES':'NO'} · Root ${x.root} · Sum ${x.sum}</div></div>`).join('');
+  $('aLock').innerHTML='<button class="btn warn" onclick="lockAOnly()">Lock Track A</button>';
+}
+
+async function lockAOnly(){
+  if(!currentA.length)return;
+  const id='A-'+new Date().toISOString();
+  const rs=await all('records');
+  const dates=[...new Set(rs.map(x=>x.date))].sort();
+  await put('locks',{id,type:'A',created:new Date().toISOString(),candidates:JSON.parse(JSON.stringify(currentA)),trainCutoffDate:dates.at(-1)||null,recordCountAtLock:rs.length,immutable:true});
+  await stats();
+  $('aLock').innerHTML='<div class="notice">🔒 Track A locked. Ranking snapshot is immutable for this cycle.</div>';
+}
+
+async function generateB(){
+  const rs=await all('records');
+  const nums=[...new Set(rs.map(x=>x.num).filter(n=>/^\d{4}$/.test(n)))];
+  const scored=nums.map(n=>scoreCandidate(n,rs)).sort((a,b)=>b.score-a.score||a.n.localeCompare(b.n));
+  const chosen=[],seenFam=new Set();
+  for(const x of scored){
+    if(chosen.length>=15)break;
+    if(!seenFam.has(x.family)||chosen.length<5){chosen.push(x);seenFam.add(x.family)}
+  }
+  currentB=chosen;window.currentB=currentB;
+  $('bResults').innerHTML=currentB.map((x,i)=>`<div class="item"><div class="row"><div><span class="rank">#${i+1}</span> <span class="num mono">${x.n}</span></div><span class="pill">Blind evidence ${x.score}/100</span></div><div class="bar"><i style="width:${x.score}%"></i></div><div class="small">Family ${x.family} · Exact ${x.exact} · Rotation ${x.rotHits} · Reverse ${x.rev} · 9-Mirror ${x.mir} · 369 ${has369(x.n)?'YES':'NO'} · Gap ${x.gap}</div></div>`).join('');
+}
+
+async function lockCycle(){
+  if(!currentA.length||!currentB.length){alert('Evaluate Track A and generate Track B first.');return}
+  const rs=await all('records');
+  const dates=[...new Set(rs.map(x=>x.date))].sort();
+  const id='CYCLE-'+new Date().toISOString();
+  await put('locks',{id,type:'CYCLE',created:new Date().toISOString(),trainCutoffDate:dates.at(-1)||null,recordCountAtLock:rs.length,trackA:JSON.parse(JSON.stringify(currentA)),trackB:JSON.parse(JSON.stringify(currentB)),immutable:true});
+  await stats();renderAudit();
+  alert(`A + B locked.\nTraining cutoff: ${dates.at(-1)||'—'}\nDo not edit before the next result.`);
+}
+
+async function latestLock(){
+  const ls=await all('locks');
+  return ls.filter(x=>x.type==='CYCLE').sort((a,b)=>a.created.localeCompare(b.created)).at(-1);
+}
+
+function auditOne(arr,actual){
+  const exactSet=new Set(actual.map(x=>x.num));
+  const familySet=new Set(actual.map(x=>family(x.num)));
+  const rotSet=new Set(actual.map(x=>x.num));
+  const out=arr.map(x=>{
+    const n=x.n;
+    const rotationHit=[rot(n,1),rot(n,2),rot(n,3)].some(v=>exactSet.has(v));
+    const reverseHit=exactSet.has(reverse(n));
+    const mirrorHit=exactSet.has(mirror(n));
+    return {n,exact:exactSet.has(n),family:familySet.has(family(n)),rotation:rotationHit,reverse:reverseHit,mirror:mirrorHit};
+  });
+  return out;
+}
+
+async function auditAgainstLatest(newRows){
+  const lock=await latestLock();
+  if(!lock)return null;
+  if(newRows[0]?.date<=String(lock.trainCutoffDate||''))return null;
+  const allLocks=await all('locks');
+  const already=allLocks.find(x=>x.id?.startsWith('AUDIT-')&&x.lockId===lock.id&&x.date===newRows[0]?.date);
+  if(already)return already;
+  const rec={id:'AUDIT-'+Date.now(),type:'AUDIT',lockId:lock.id,date:newRows[0]?.date,A:auditOne(lock.trackA,newRows),B:auditOne(lock.trackB,newRows)};
+  await put('locks',rec);
+  return rec;
+}
+
+async function renderAudit(){
+  const ls=await all('locks');
+  const cycles=ls.filter(x=>x.type==='CYCLE').sort((a,b)=>b.created.localeCompare(a.created));
+  const audits=ls.filter(x=>x.type==='AUDIT').sort((a,b)=>b.date.localeCompare(a.date));
+  const lastCycle=cycles[0],lastAudit=audits[0];
+  if(!lastCycle){$('auditBox').innerHTML='<div class="item">No A+B cycle has been locked yet.</div>';return}
+  const hit=a=>a.filter(x=>x.exact).length;
+  let html=`<div class="item"><b>Latest locked cycle</b><div class="small">Training cutoff: ${esc(lastCycle.trainCutoffDate||'—')} · Records at lock: ${lastCycle.recordCountAtLock||'—'}</div><div class="small">Track A: ${lastCycle.trackA.length} candidates · Track B: ${lastCycle.trackB.length} blind candidates</div></div>`;
+  if(lastAudit){
+    html+=`<div class="item"><b>Latest result audit · ${esc(lastAudit.date)}</b><div class="small">Track A exact hits: ${hit(lastAudit.A)} / ${lastAudit.A.length}</div><div class="small">Track B exact hits: ${hit(lastAudit.B)} / ${lastAudit.B.length}</div><div class="small">Family / rotation / reverse / 9-Mirror are also stored in the audit snapshot.</div></div>`;
+  }else{
+    html+='<div class="item review">No post-lock result has been audited yet. Upload the next official result PDF.</div>';
+  }
+  $('auditBox').innerHTML=html;
+}
+
+async function runBacktest(){
+  const rs=await all('records');
+  const dates=[...new Set(rs.map(x=>x.date))].sort();
+  const n=Number($('btWindow').value);
+  const use=dates.slice(-n);
+  const prior=rs.filter(x=>!use.includes(x.date));
+  const actual=rs.filter(x=>use.includes(x.date));
+  const exactSet=new Set(prior.map(x=>x.num));
+  const famSet=new Set(prior.map(x=>family(x.num)));
+  let exact=0,fam=0,rot=0,rev=0,mir=0;
+  for(const x of actual){
+    if(exactSet.has(x.num))exact++;
+    if(famSet.has(family(x.num)))fam++;
+    if(prior.some(p=>p.num===rot(x.num,1)||p.num===rot(x.num,2)||p.num===rot(x.num,3)))rot++;
+    if(exactSet.has(reverse(x.num)))rev++;
+    if(exactSet.has(mirror(x.num)))mir++;
+  }
+  const total=actual.length||1;
+  const rows=[['Exact',exact/total],['Family',fam/total],['Rotation',rot/total],['Reverse',rev/total],['9-Mirror',mir/total]];
+  $('btResults').innerHTML=rows.map(x=>`<div class="item"><b>${x[0]}</b><div class="bar"><i style="width:${Math.round(x[1]*100)}%"></i></div><div class="small">Observed endpoint hit rate: ${(x[1]*100).toFixed(2)}% over ${n} draws / ${total} records</div></div>`).join('')+
+  `<div class="notice">Descriptive walk-forward-style audit only. This is not a probability estimate, forecast, or guarantee.</div>`;
+}
+
+async function seedReset(){
+  if(!confirm('Reset this browser research database to the bundled clean baseline?'))return;
+  await clearStore('records');await clearStore('draws');await clearStore('locks');
+  const info=await seedBaseline();await showInitStatus(info);
+  currentA=[];currentB=[];window.currentA=[];window.currentB=[];
+  $('aResults').innerHTML='';$('aLock').innerHTML='';$('bResults').innerHTML='';renderAudit();
+  alert(`Clean baseline restored: ${info.rows.length} endpoints across 38 draw dates. ${info.removed} invalid/artifact records were excluded.`);
+}
+
+async function exportState(){
+  const data={version:'NEXUS-X Ω Android V4 Fixed',exported:new Date().toISOString(),draws:await all('draws'),records:await all('records'),locks:await all('locks')};
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download='nexus-x-omega-v4-export.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+
+window.evaluateA=evaluateA;
+window.generateB=generateB;
+window.lockCycle=lockCycle;
+window.lockAOnly=lockAOnly;
+window.clearCandidates=()=>{$('candInput').value='';$('aResults').innerHTML='';$('aLock').innerHTML='';currentA=[];window.currentA=[]};
+window.seedReset=seedReset;
+window.exportState=exportState;
+window.runBacktest=runBacktest;
+window.renderData=renderData;
+
+(async()=>{
+  const info=await ensureData();
+  await showInitStatus(info);
+  await initPDF();
+  await renderAudit();
+})();
 </script>
-</body></html>
+</body>
+</html>
