@@ -1,4 +1,19 @@
-Target parser test: 18/09/2026 SK-70 PDF.
-Expected after footer-date removal: 362 4-digit endpoint records across 4th–9th prize tiers.
-Expected tier counts: 4th 19, 5th 6, 6th 25, 7th 76, 8th 91, 9th 145.
-The parser removes page-footer/date strings before extracting 4-digit endpoints so the recurring year 2026 is not treated as a lottery endpoint.
+V4 FIX TEST NOTES
+
+Source review of Android V3 found:
+- V3 seed records contain prize amounts/category labels rather than normalized tier/weight fields.
+- V3 baseline contains 191 records with num=2026, known footer/date artifacts.
+- V3 seed contains 39 draw dates before later browser-added draws; 2026 artifact removal leaves 38 draw dates in the bundled baseline because 2026-09-13 is represented by a web supplement and 2026 artifact cleanup does not invent missing draws.
+- V3 lockCount counted every object in the locks store, including A locks and AUDIT objects.
+- V3 Track A placeholder used literal "\n" inside an HTML attribute, which renders backslash-n instead of line breaks.
+- V3 service-worker cache name was unchanged, making stale app-shell behavior possible after replacing index.html.
+
+Functional targets:
+1. Track A accepts 4-digit values separated by lines, spaces, commas, or semicolons.
+2. Evaluate Track A produces ranked evidence cards.
+3. Lock Track A stores an immutable snapshot.
+4. Track B generates without reading Track A.
+5. A+B lock stores training cutoff.
+6. PDF QC blocks duplicate dates and invalid data.
+7. Appending a new result audits it against the latest cycle.
+8. Backtest runs on the selected recent draw window.
