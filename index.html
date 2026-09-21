@@ -232,6 +232,7 @@ function digitSum(n){return [...n].reduce((a,b)=>a+Number(b),0)}
 function root(n){return digitSum(n)%9||9}
 function mod3(n){return digitSum(n)%3}
 function normalizeNum(n){return String(n??'').trim().padStart(4,'0')}
+function normalizeCandidateList(v){return [...new Set(String(v??'').split(/[\s,;]+/).map(x=>x.trim()).filter(x=>/^\d{4}$/.test(x)))]}
 function recordId(r){return `${r.date}|${r.tier}|${r.num}|${r.source||''}`}
 function normalizeRecord(x){
   const num=normalizeNum(x.num);
@@ -484,6 +485,7 @@ function scoreCandidate(n,rs){
 }
 
 async function evaluateA(){
+  try{
   const cand=normalizeCandidateList($('candInput').value);
   if(!cand.length){$('aResults').innerHTML='<div class="item review">Enter valid 4-digit candidates.</div>';return}
   const rs=await all('records');
@@ -491,6 +493,10 @@ async function evaluateA(){
   window.currentA=currentA;
   $('aResults').innerHTML=currentA.map((x,i)=>`<div class="item"><div class="row"><div><span class="rank">#${i+1}</span> <span class="num mono">${x.n}</span></div><span class="pill">Evidence ${x.score}/100</span></div><div class="bar"><i style="width:${x.score}%"></i></div><div class="small" style="margin-top:7px">Exact ${x.exact} · Family ${x.famHits} · Rotation ${x.rotHits} · Reverse ${x.rev} · 9-Mirror ${x.mir} · Recent exact ${x.recentExact} · Gap ${x.gap} draws · 369 ${has369(x.n)?'YES':'NO'} · Root ${x.root} · Sum ${x.sum}</div></div>`).join('');
   $('aLock').innerHTML='<button class="btn warn" onclick="lockAOnly()">Lock Track A</button>';
+  }catch(e){
+    console.error('Track A error',e);
+    $('aResults').innerHTML='<div class="item fail">Track A error: '+esc(e?.message||e)+'</div>';
+  }
 }
 
 async function lockAOnly(){
