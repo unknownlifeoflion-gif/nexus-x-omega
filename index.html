@@ -233,15 +233,6 @@ function root(n){return digitSum(n)%9||9}
 function mod3(n){return digitSum(n)%3}
 function normalizeNum(n){return String(n??'').trim().padStart(4,'0')}
 function recordId(r){return `${r.date}|${r.tier}|${r.num}|${r.source||''}`}
-  function normalizeCandidateList(text){
-  return [...new Set(
-    String(text || '')
-      .split(/[\s,;]+/)
-      .map(normalizeNum)
-      .filter(n => /^\d{4}$/.test(n))
-  )];
-}
-function recordId(r){return `${r.date}|${r.tier}|${r.num}|${r.source||''}`}
 function normalizeRecord(x){
   const num=normalizeNum(x.num);
   const prize=Number(x.prize);
@@ -252,7 +243,6 @@ function normalizeRecord(x){
     date:x.date,tier:map.tier,prize,weight:map.weight,num,source:x.source||'unknown'
   };
 }
-
 async function readOldDB(){
   return new Promise((resolve)=>{
     const r=indexedDB.open(OLD_DB);
