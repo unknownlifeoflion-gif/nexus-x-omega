@@ -502,7 +502,7 @@ async function lockAOnly(){
   $('aLock').innerHTML='<div class="notice">🔒 Track A locked. Ranking snapshot is immutable for this cycle.</div>';
 }
 
-async function generateB(){
+  async function generateB(){
   const btn=document.querySelector('#trackb .btn.primary');
   if(btn?.dataset.busy==='1')return;
   if(btn){btn.dataset.busy='1';btn.disabled=true;btn.textContent='Generating…';}
