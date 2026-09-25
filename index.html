@@ -232,6 +232,14 @@ function digitSum(n){return [...n].reduce((a,b)=>a+Number(b),0)}
 function root(n){return digitSum(n)%9||9}
 function mod3(n){return digitSum(n)%3}
 function normalizeNum(n){return String(n??'').trim().padStart(4,'0')}
+  function normalizeCandidateList(text){
+  return [...new Set(
+    String(text || '')
+      .split(/[\s,;]+/)
+      .map(x => String(x).trim())
+      .filter(n => /^\d{4}$/.test(n))
+  )];
+  }
 function recordId(r){return `${r.date}|${r.tier}|${r.num}|${r.source||''}`}
 function normalizeRecord(x){
   const num=normalizeNum(x.num);
